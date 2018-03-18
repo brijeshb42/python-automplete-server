@@ -43,7 +43,7 @@ def get_completions(source, line, column, get_full_desc=False):
     'source': fields.Str(required=True, location='json'),
     'line': fields.Int(required=True, location='json'),
     'column': fields.Int(required=True, location='json'),
-    'get_full_desc': fields.Bool(required=True, location='json', default=False)
+    'get_full_desc': fields.Bool(location='json', default=False)
 })
 def index(**kwargs):
     completions = get_completions(**kwargs)
