@@ -50,12 +50,27 @@ def index(**kwargs):
     return jsonify(data=completions)
 
 
+@app.errorhandler(422)
+def handle_unprocessable_entity(err):
+    # webargs attaches additional metadata to the `data` attribute
+    exc = getattr(err, 'exc')
+    if exc:
+        # Get validations from the ValidationError object
+        messages = exc.messages
+    else:
+        messages = ['Invalid request']
+    return jsonify({
+        'messages': messages,
+    }), 422
+
+
 @app.after_request
 def add_cors(response):
     """
     To allow cross originn xhr
     """
     response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type'
     return response
 
 
