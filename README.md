@@ -8,8 +8,8 @@ Send a POST request to [https://python-autocomplete-server.herokuapp.com/](https
 
 ```json
 {
-  source: 'your python source code',
-  line: 'the line in which the cursor is present (0 index)',
-  column: 'the column number of the cursor(0 index)'
+  "source": "your python source code",
+  "line": "the line in which the cursor is present (0 index)",
+  "column": "the column number of the cursor(0 index)"
 }
 ```
