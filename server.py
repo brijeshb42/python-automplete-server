@@ -53,8 +53,7 @@ def process(**kwargs):
 @app.route('/', methods=('GET',))
 def index():
     return """
-    <h4>Send a POST request with the following JSON body</h4>
-    <p>
+<h4>Send a POST request with the following JSON body</h4>
 <pre>
 {
     "source": "The python source code to process",
@@ -62,7 +61,6 @@ def index():
     "column": 0 (the column of the line of cursor, 0 indexed)
 }
 </pre>
-    </p>
     """
 
 
