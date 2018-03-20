@@ -45,9 +45,25 @@ def get_completions(source, line, column, get_full_desc=False):
     'column': fields.Int(required=True, location='json'),
     'get_full_desc': fields.Bool(location='json', default=False)
 })
-def index(**kwargs):
+def process(**kwargs):
     completions = get_completions(**kwargs)
     return jsonify(data=completions)
+
+
+@app.route('/', methods=('GET',))
+def index():
+    return """
+    <h4>Send a POST request with the following JSON body</h4>
+    <p>
+<pre>
+{
+    "source": "The python source code to process",
+    "line": 0 (the line in which the cursor is present, 0 indexed),
+    "column": 0 (the column of the line of cursor, 0 indexed)
+}
+</pre>
+    </p>
+    """
 
 
 @app.errorhandler(422)
